@@ -1,0 +1,36 @@
+SELECT *FROM classes;
+SELECT *FROM roles;
+
+/*names of students enrolled in Math class*/
+SELECT firstName, lastName FROM users,enrollments
+WHERE users.userId = enrollments.userId AND enrollments.classCode =1 and enrollments.roleId = 1;
+
+/*classses in which 'ehorsted2' is enrolled*/
+SELECT classes.className FROM classes
+JOIN enrollments ON classes.classCode = enrollments.classCode
+JOIN users ON users.userId = enrollments.userId
+WHERE users.username = "ehorstead2";
+
+
+/*TRANSACTION*/
+BEGIN TRANSACTION;
+INSERT INTO classes
+VALUES
+(5,"History");
+
+INSERT INTO enrollments
+VALUES
+(5,1,1),
+(5,1,2),
+(5,2,3);
+SELECT firstName, lastName FROM users,enrollments
+WHERE users.userId = enrollments.userId AND enrollments.classCode =5 and enrollments.roleId = 1;
+
+COMMIT;
+
+/*change role of teacher from art class to administrator*/
+
+SELECT classcode From classes WHERE classes.className ="Art";
+UPDATE enrollments
+SET roleId =3
+WHERE roleId = 3 AND classCode = 4;
