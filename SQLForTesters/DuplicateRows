@@ -1,0 +1,14 @@
+/*duplicate the rows*/
+INSERT INTO products
+SELECT productId+14,name,price,description,image,stock,categoryId FROM products;
+
+/*Add new category*/
+INSERT INTO categories
+VALUES 
+(5, "testers");
+
+
+/*update products using added new category*/
+UPDATE products
+SET categoryId=5
+WHERE name LIKE '%tester%';

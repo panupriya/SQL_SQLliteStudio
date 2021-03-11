@@ -1,0 +1,22 @@
+BEGIN TRANSACTION;
+
+INSERT INTO cart
+VALUES
+(1,2),
+(1,3);
+SELECT * FROM cart;
+/*ROOLBACK;*/
+COMMIT;
+
+
+BEGIN TRANSACTION;
+
+INSERT INTO cart
+VALUES
+(1,4);
+
+UPDATE products
+SET stock = stock-1
+WHERE productId=4;
+
+COMMIT;

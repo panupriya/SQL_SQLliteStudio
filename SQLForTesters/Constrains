@@ -1,0 +1,17 @@
+UPDATE products
+SET name = "null"
+WHERE productId =1;
+
+
+UPDATE products
+SET price = -1
+WHERE productId =1;
+
+
+UPDATE categories
+SET categoryId = 6
+WHERE categoryId =1;
+
+UPDATE products
+SET categoryId = 5
+WHERE productId =1;
