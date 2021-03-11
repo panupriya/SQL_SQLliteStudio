@@ -1,0 +1,19 @@
+SELECT * FROM products
+WHERE productID = 2;
+
+SELECT address1 AS A1 FROM users
+WHERE email = "fakeuser1@gmail.com";
+
+SELECT address1 AS A1 FROM users
+WHERE email = "fakeuser1@gmail.com";
+
+SELECT address1 AS A1 FROM users
+WHERE A1 LIKE '% %';
+
+SELECT * FROM products
+INNER JOIN cart
+ON cart.productid = products.productid;
+
+SELECT DISTINCT users.firstName FROM users
+JOIN cart
+ON cart.userid = users.userid;

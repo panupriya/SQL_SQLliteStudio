@@ -1,0 +1,6 @@
+SELECT * FROM FAKE_CAR_DATA
+/*WHERE vehicle_make = "BMW";*/
+/*WHERE vehicle_year > 2000;*/
+WHERE vehicle_year BETWEEN 1989 AND 2000
+/*ORDER BY first_name;*/
+ORDER BY first_name DESC;
