@@ -1,0 +1,75 @@
+SELECT *FROM Country;
+
+SELECT *FROM Country ORDER BY Name;
+
+SELECT Name, Region FROM Country ORDER BY Name;
+
+SELECT Name, LifeExpectancy AS "Life Expectancy" FROM Country ORDER BY Name; /*As CLAUSE USED TO NAME THE COLUMN*/
+
+SELECT Name, LifeExpectancy "Life Expectancy" FROM Country ORDER BY Name; /*COLUMN NAME WITH DOUBLR QUESTES WITHOUT AS*/
+
+
+/*Selecting Rows*/
+
+SELECT Name, Continent, Region FROM Country WHERE Continent= 'Asia' ORDER BY Name;  /*ASCENDING ORDER NAMES*/
+
+SELECT Name, Continent, Region FROM Country WHERE Continent= 'Asia' ORDER BY Name LIMIT 5; /*FIRST 5 ROWS*/
+
+SELECT Name, Continent, Region FROM Country WHERE Continent= 'Asia' ORDER BY Name LIMIT 5 OFFSET 5;  /*NEXT 5 ROWS*/
+
+SELECT Name, Continent, Region FROM Country WHERE Continent= 'Asia' ORDER BY Name LIMIT 5 OFFSET 10; /*FROM 11TH ROW*/
+
+/*Selecting Columns*/
+
+SELECT *FROM Country;
+
+SELECT Name, Continent, Region FROM Country;
+
+SELECT Name AS Country, Continent, Region FROM Country; /*column Name replaced with Country*/
+
+SELECT Name AS Country, Region,Continent FROM Country; /*Can execute in any order accoirdingly we will get the result*/
+
+SELECT  Region,Continent,Name AS Country FROM Country; /*Can execute in any order accoirdingly we will get the result*//**/
+
+/*Counting rows*/
+
+SELECT COUNT(*) FROM Country; /*to get count of all rows*/
+
+SELECT COUNT(LifeExpectancy) FROM Country;  /*Specifying a puticular column*/
+
+SELECT COUNT(*) FROM Country WHERE Population > 1000000; /*to get count of rows limited to given condition*/
+
+SELECT COUNT(*) FROM Country WHERE Population > 1000000 AND Continent = 'Asia'; /*possible to add more conditions*/
+
+/*InsertinG data*/
+
+SELECT *FROM Customer;
+
+INSERT INTO customer (name, address, city, state, zip) 
+  VALUES ('Anu', '123 Gotha Way', 'Brisbane', 'QLD', '40000');
+
+INSERT INTO customer (name, city, state) /*NULL FOR OTHER VALUES*/
+  VALUES ('Priya', 'Victoria', 'SA');
+  
+/*updating data*/
+
+SELECT * FROM customer;
+
+UPDATE customer SET address = '123 Gotha Avenue', zip = '40006' WHERE id = 6;
+
+UPDATE customer SET address = '263 S Watts St', zip = '41006' WHERE id = 6;
+
+UPDATE customer SET address = NULL, zip = NULL WHERE id = 6; /*Set null value*/
+
+/*deleting data*/
+
+SELECT * FROM customer WHERE id = 5;
+
+DELETE FROM customer WHERE id = 5;
+SELECT * FROM customer;
+
+DELETE FROM customer WHERE id = 6;
+SELECT * FROM customer;
+
+DELETE FROM customer WHERE id = 4;
+SELECT * FROM customer;

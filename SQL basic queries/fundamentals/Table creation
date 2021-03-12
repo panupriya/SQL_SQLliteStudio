@@ -1,0 +1,131 @@
+/*Create a table*/
+
+CREATE TABLE test (
+  a INTEGER,
+  b TEXT
+);
+
+INSERT INTO test VALUES ( 1, 'a' );
+INSERT INTO test VALUES ( 2, 'b' );
+INSERT INTO test VALUES ( 3, 'c' );
+SELECT * FROM test;
+
+
+
+/*delete table*/
+CREATE TABLE test ( a TEXT, b TEXT );
+INSERT INTO test VALUES ( 'one', 'two' );
+
+SELECT * FROM test;
+
+DROP TABLE test;
+
+DROP TABLE IF EXISTS test;
+
+
+/*inserting rows to table*/
+CREATE TABLE test ( a INTEGER, b TEXT, c TEXT );
+
+INSERT INTO test VALUES ( 1, 'This', 'Right here!' ); 
+
+INSERT INTO test ( b, c ) VALUES ( 'That', 'Over there!' ); /*inserting specified rows*/
+
+INSERT INTO test DEFAULT VALUES; /*inserting null values*/
+
+INSERT INTO test ( a, b, c ) SELECT id, name, description FROM item;/*inserting values from different table*/
+
+SELECT * FROM test;
+
+
+/*delete row from a table*/
+SELECT * FROM test;
+
+DELETE FROM test WHERE a = 2;
+
+SELECT * FROM test WHERE a = 1;
+
+DELETE FROM test WHERE a = 1;
+
+ /*NULL value*/
+SELECT * FROM test;
+
+SELECT * FROM test WHERE a = NULL; /*no result because null is not a value*/
+
+SELECT * FROM test WHERE a IS NULL;
+
+SELECT * FROM test WHERE a IS NOT NULL;
+
+INSERT INTO test ( a, b, c ) VALUES ( 0, NULL, '' ); /*creating new row*/
+
+SELECT * FROM test WHERE b IS NULL;
+
+SELECT * FROM test WHERE b = '';
+
+SELECT * FROM test WHERE c = '';
+
+SELECT * FROM test WHERE c IS NULL;
+
+DROP TABLE IF EXISTS test; /*deleting the test table*/
+
+CREATE TABLE test (
+  a INTEGER NOT NULL,
+  b TEXT NOT NULL,
+  c TEXT
+);
+
+INSERT INTO test VALUES ( 1, 'this', 'that' );
+SELECT * FROM test;
+
+INSERT INTO test ( b, c ) VALUES ( 'one', 'two' );/*fail because a is declared as NOT NULL*/
+
+INSERT INTO test ( a, c ) VALUES ( 1, 'two' );/*fail because b is also declared as NOT NULL*/
+
+INSERT INTO test ( a, b ) VALUES ( 1, 'two' );/*it works because c is not declared as NOT NULL*/
+
+DROP TABLE IF EXISTS test;
+
+
+/*Constainiong columns*/
+DROP TABLE IF EXISTS test;
+
+CREATE TABLE test ( a TEXT, b TEXT, c TEXT );
+INSERT INTO test ( a, b ) VALUES ( 'one', 'two' );
+SELECT * FROM test;
+
+CREATE TABLE test ( a TEXT, b TEXT, c TEXT NOT NULL );
+
+CREATE TABLE test ( a TEXT, b TEXT, c TEXT DEFAULT 'panda' );/*we can define default value*/
+
+CREATE TABLE test ( a TEXT UNIQUE, b TEXT, c TEXT DEFAULT 'panda' );/*UNIQE will not allow duplicate data creation(NULL is an exception)*/
+
+CREATE TABLE test ( a TEXT UNIQUE NOT NULL, b TEXT, c TEXT DEFAULT 'panda' );/*avoid creation of duplicate data with NULL as well*/
+
+/*Changing a schema*/
+DROP TABLE IF EXISTS test;
+
+CREATE TABLE test (a TEXT, b TEXT, c TEXT);
+INSERT INTO test ( a, b, c )  VALUES ('one', 'two', 'three');
+INSERT INTO test ( a, b, c )  VALUES ('four', 'five', 'six');
+INSERT INTO test ( a, b, c )  VALUES ('seven', 'eight', 'nine');
+
+SELECT *FROM test;
+
+ALTER TABLE test ADD d TEXT;/*will add column d with null values*/
+
+ALTER TABLE test ADD e e TEXT DEFAULT 'panda';
+
+DROP TABLE IF EXISTS test;
+
+/*CREATING id*/
+CREATE TABLE test (
+  id INTEGER PRIMARY KEY, /*Sytax varies for different database system*/
+  a INTEGER,
+  b TEXT
+);
+
+INSERT INTO test (a, b) VALUES ( 10, 'a' );
+INSERT INTO test (a, b) VALUES ( 11, 'b' );
+INSERT INTO test (a, b) VALUES ( 12, 'c' );
+
+SELECT * FROM test;
+DROP TABLE IF EXISTS test;
