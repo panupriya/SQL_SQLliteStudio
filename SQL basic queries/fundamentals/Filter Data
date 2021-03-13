@@ -1,0 +1,90 @@
+/*Filtering data*/
+SELECT *FROM Country;
+
+SELECT Name, Continent, Population FROM Country 
+  WHERE Population < 100000 ORDER BY Population DESC; /*population with null value excluded*/
+  
+SELECT Name, Continent, Population FROM Country 
+  WHERE Population < 100000 OR Population IS NULL ORDER BY Population DESC; /*population with null value included*/ /*OR opertaion returns trune value if either of the condition true*/
+  
+SELECT Name, Continent, Population FROM Country 
+  WHERE Population < 100000 AND Continent = 'Oceania' ORDER BY Population DESC;/*AND opertaion returns trune value if both conditions become true*/
+  
+SELECT Name, Continent, Population FROM Country 
+  WHERE Name LIKE '%island%' ORDER BY Name; /*anything after and before island accepted*/
+  
+SELECT Name, Continent, Population FROM Country 
+  WHERE Name LIKE '%island' ORDER BY Name;/*anything before island axepted but not after*/
+  
+SELECT Name, Continent, Population FROM Country 
+  WHERE Name LIKE 'island%' ORDER BY Name;/*should start with island and anything after that accepted*/
+  
+SELECT Name, Continent, Population FROM Country 
+  WHERE Name LIKE '_a%' ORDER BY Name;/*can start with any letter second letter must be 'a' and anything afte a is accepted*/
+  
+SELECT Name, Continent, Population FROM Country 
+ WHERE Continent IN ( 'Europe', 'Asia' ) ORDER BY Name;/*IN is also used to filter the data*/
+ 
+/*Removing duplicates*/
+
+SELECT Continent FROM Country; /*duplicate data is present*/
+
+SELECT DISTINCT Continent FROM Country;/*Using the SELECT DISTINCT statement, you will get only unique results. */
+
+DROP TABLE IF EXISTS test;
+CREATE TABLE test ( a int, b int );
+INSERT INTO test VALUES ( 1, 1 );
+INSERT INTO test VALUES ( 2, 1 );
+INSERT INTO test VALUES ( 3, 1 );
+INSERT INTO test VALUES ( 4, 1 );
+INSERT INTO test VALUES ( 5, 1 );
+INSERT INTO test VALUES ( 1, 2 );
+INSERT INTO test VALUES ( 1, 2 );
+INSERT INTO test VALUES ( 1, 2 );
+INSERT INTO test VALUES ( 1, 2 );
+INSERT INTO test VALUES ( 1, 2 );
+SELECT * FROM test;
+
+SELECT DISTINCT a FROM test;/*avoid duplicate values in a*/
+
+SELECT DISTINCT b FROM test;/*avoid duplicate values in b*/
+
+SELECT DISTINCT a, b FROM test;/*distinct values where a and b together are different*/
+
+DROP TABLE IF EXISTS test;
+
+/*ordering output*/
+
+SELECT Name FROM Country;
+
+SELECT Name FROM Country ORDER BY Name;
+
+SELECT Name FROM Country ORDER BY Name DESC;
+
+SELECT Name FROM Country ORDER BY Name ASC;
+
+SELECT Name, Continent FROM Country ORDER BY Continent, Name;
+
+SELECT Name, Continent, Region FROM Country ORDER BY Continent DESC, Region, Name;
+
+/*conditional expressions*/
+
+DROP TABLE IF EXISTS booltest;
+CREATE TABLE booltest (a INTEGER, b INTEGER);
+INSERT INTO booltest VALUES (1, 0);
+SELECT * FROM booltest;
+
+SELECT
+    CASE WHEN a THEN 'true' ELSE 'false' END AS boolA,
+    CASE WHEN b THEN 'true' ELSE 'false' END AS boolB
+    FROM booltest
+;
+
+SELECT
+  CASE a WHEN 1 THEN 'true' ELSE 'false' END AS boolA,
+  CASE b WHEN 1 THEN 'true' ELSE 'false' END AS boolB 
+  FROM booltest
+;
+
+DROP TABLE IF EXISTS booltest;
+
